@@ -1,9 +1,9 @@
-package mz.org.fgh.cmmv.backend.mobilizer
+package mz.org.fgh.cmmv.backend.link
 
 import grails.testing.gorm.DomainUnitTest
 import spock.lang.Specification
 
-class MobilizerSpec extends Specification implements DomainUnitTest<Mobilizer> {
+class LinkSpec extends Specification implements DomainUnitTest<Link> {
 
     def setup() {
     }
