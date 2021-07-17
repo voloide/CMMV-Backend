@@ -1,10 +1,24 @@
 package mz.org.fgh.cmmv.backend.appointment
 
 import grails.rest.Resource
+import mz.org.fgh.cmmv.backend.clinic.Clinic
+import mz.org.fgh.cmmv.backend.utente.Utente
 
 @Resource(uri='/api/appointment')
 class Appointment {
 
+    Date appointmentDate
+    long time
+    boolean hasHappened
+    int orderNumber
+
+    static belongsTo = [clinic: Clinic,user: Utente]
+
     static constraints = {
+        appointmentDate(nullable: false, blank: true, validator: { appointmentDate, urc ->
+            return appointmentDate != null ? appointmentDate <= new Date() : null
+        })
+        time nullable:false
+        orderNumber nullable:false
     }
 }
