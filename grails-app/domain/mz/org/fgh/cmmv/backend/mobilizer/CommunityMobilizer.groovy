@@ -9,6 +9,8 @@ class CommunityMobilizer {
 
     String firstNames
     String lastNames
+    String cellNumber
+    String cellNumber2
     String uuid
 
     static hasMany = [docsOrImages: InfoDocsOrImages]
@@ -17,5 +19,7 @@ class CommunityMobilizer {
     static constraints = {
         firstNames(nullable: false, blank: false)
         lastNames(nullable: false, blank: false)
+        cellNumber(nullable: false, matches: /\d+/, maxSize: 12, minSize: 9)
+        cellNumber2(nullable: false, matches: /\d+/, maxSize: 12, minSize: 9)
     }
 }
