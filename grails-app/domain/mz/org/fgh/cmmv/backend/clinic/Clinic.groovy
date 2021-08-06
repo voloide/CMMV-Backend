@@ -2,7 +2,8 @@ package mz.org.fgh.cmmv.backend.clinic
 
 import grails.rest.Resource
 import mz.org.fgh.cmmv.backend.appointment.Appointment
-import mz.org.fgh.cmmv.backend.link.Link
+
+import mz.org.fgh.cmmv.backend.mobilizer.CommunityMobilizer
 
 @Resource(uri='/api/clinic')
 class Clinic {
@@ -15,7 +16,7 @@ class Clinic {
 
     static hasMany = [
             appointments: Appointment,
-            links: Link
+            mobilizers: CommunityMobilizer
     ]
 
     static constraints = {
