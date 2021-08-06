@@ -1,6 +1,7 @@
 package mz.org.fgh.cmmv.backend.mobilizer
 
 import grails.rest.Resource
+import mz.org.fgh.cmmv.backend.clinic.Clinic
 import mz.org.fgh.cmmv.backend.docsOrImages.InfoDocsOrImages
 import mz.org.fgh.cmmv.backend.messages.Message
 
@@ -14,7 +15,7 @@ class CommunityMobilizer {
     String uuid
 
     static hasMany = [docsOrImages: InfoDocsOrImages]
-    static belongsTo = [docsOrImages: InfoDocsOrImages]
+    static belongsTo = [docsOrImages: InfoDocsOrImages , clinic : Clinic]
 
     static constraints = {
         firstNames(nullable: false, blank: false)

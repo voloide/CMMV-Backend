@@ -11,6 +11,8 @@ class Appointment {
     long time
     boolean hasHappened
     int orderNumber
+    String status
+    Date visitDate
 
     static belongsTo = [clinic: Clinic,user: Utente]
 
@@ -20,5 +22,11 @@ class Appointment {
         })
         time nullable:false
         orderNumber nullable:false
+        visitDate(nullable: true, blank: true, validator: { visitDate, urc ->
+            return visitDate != null ? visitDate <= new Date() : null
+        })
+        status nullable: false , inList: ['PENDENTE','CONFIRMADO','REMARCADO']
     }
+
+
 }
