@@ -1,8 +1,10 @@
 package mz.org.fgh.cmmv.backend.userLogin
 
+import grails.rest.Resource
 import mz.org.fgh.cmmv.backend.mobilizer.CommunityMobilizer
 import mz.org.fgh.cmmv.backend.utente.Utente
 
+@Resource(uri='/api/login')
 class UserLogin {
 
     String username

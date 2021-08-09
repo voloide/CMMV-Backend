@@ -1,8 +1,10 @@
 package mz.org.fgh.cmmv.backend.address
 
+import grails.rest.Resource
 import mz.org.fgh.cmmv.backend.distribuicaoAdministrativa.District
 import mz.org.fgh.cmmv.backend.utente.Utente
 
+@Resource(uri='/api/address')
 class Address {
 
     String neighboorhood
@@ -11,8 +13,7 @@ class Address {
     String latitude
     String longitude
     static belongsTo = [district: District]
-    Utente user
-
+    static hasOne = [user: Utente]
     static constraints = {
 
         neighboorhood(nullable: false, blank: false)
@@ -20,5 +21,6 @@ class Address {
         residence(nullable: false, blank: false)
         latitude(nullable: false, blank: false)
         longitude(nullable: false,blank: false)
+        user nullable: true
     }
 }

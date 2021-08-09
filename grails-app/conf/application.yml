@@ -3,6 +3,8 @@ grails:
     profile: rest-api
     codegen:
         defaultPackage: cmmv.backend
+    cors:
+        enabled: true
     gorm:
         reactor:
             # Whether to translate GORM events into Reactor events
@@ -86,7 +88,7 @@ dataSource:
 environments:
     development:
         dataSource:
-            dbCreate: create
+            dbCreate: update
             url: jdbc:postgresql://localhost:5432/cmmv
     test:
         dataSource:
