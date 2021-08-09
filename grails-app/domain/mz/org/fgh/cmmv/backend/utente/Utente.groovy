@@ -31,7 +31,6 @@ class Utente {
     }
 
     static constraints = {
-        firstNames(nullable: false, blank: false)
         lastNames(nullable: false, blank: false)
         birthDate(nullable: false, blank: true, validator: { birthDate, urc ->
             return birthDate != null ? birthDate <= new Date() : null
