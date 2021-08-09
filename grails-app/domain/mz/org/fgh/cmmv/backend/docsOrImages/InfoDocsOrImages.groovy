@@ -12,6 +12,7 @@ class InfoDocsOrImages {
     byte blop
 
     static hasMany = [users: Utente, mobilizers: CommunityMobilizer]
+    static belongsTo = [users: Utente]
 
 
     static constraints = {

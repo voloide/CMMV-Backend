@@ -2,6 +2,7 @@ package mz.org.fgh.cmmv.backend.utente
 
 import grails.rest.Resource
 import mz.org.fgh.cmmv.backend.address.Address
+import mz.org.fgh.cmmv.backend.clinic.Clinic
 import mz.org.fgh.cmmv.backend.docsOrImages.InfoDocsOrImages
 import mz.org.fgh.cmmv.backend.messages.Message
 import mz.org.fgh.cmmv.backend.mobilizer.CommunityMobilizer
@@ -20,9 +21,14 @@ class Utente {
     String systemNumber
     boolean haspartner
 
-    static hasOne = [address:Address]
-    static belongsTo = [infoDocsImages: InfoDocsOrImages,mobilizer:CommunityMobilizer]
+    static belongsTo = [mobilizer:CommunityMobilizer, address:Address, clinic: Clinic]
     static hasMany = [infoDocsImages: InfoDocsOrImages]
+
+    static mapping = {
+        address fetch: 'join'
+        mobilizer fetch: 'join'
+        clinic fetch: 'join'
+    }
 
     static constraints = {
         firstNames(nullable: false, blank: false)
@@ -36,5 +42,8 @@ class Utente {
         documentNumber(nullable: false, blank: false)
         systemNumber(nullable: false, blank: false)
         preferedLanguage(nullable: true)
+        infoDocsImages(nullable: true)
+        mobilizer(nullable: true)
+        clinic(nullable: true)
     }
 }
