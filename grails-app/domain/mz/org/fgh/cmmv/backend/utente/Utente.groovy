@@ -6,6 +6,7 @@ import mz.org.fgh.cmmv.backend.clinic.Clinic
 import mz.org.fgh.cmmv.backend.docsOrImages.InfoDocsOrImages
 import mz.org.fgh.cmmv.backend.messages.Message
 import mz.org.fgh.cmmv.backend.mobilizer.CommunityMobilizer
+import mz.org.fgh.cmmv.backend.userLogin.UserLogin
 
 @Resource(uri='/api/utente')
 class Utente {
@@ -21,14 +22,8 @@ class Utente {
     String systemNumber
     boolean haspartner
 
-    static belongsTo = [mobilizer:CommunityMobilizer, address:Address, clinic: Clinic]
+    static belongsTo = [mobilizer:CommunityMobilizer, address:Address, clinic: Clinic, user: UserLogin]
     static hasMany = [infoDocsImages: InfoDocsOrImages]
-
-    static mapping = {
-        address fetch: 'join'
-        mobilizer fetch: 'join'
-        clinic fetch: 'join'
-    }
 
     static constraints = {
         lastNames(nullable: false, blank: false)
@@ -44,5 +39,6 @@ class Utente {
         infoDocsImages(nullable: true)
         mobilizer(nullable: true)
         clinic(nullable: true)
+        user(nullable: true)
     }
 }

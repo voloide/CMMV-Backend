@@ -11,10 +11,12 @@ class UserLogin {
     String password
 
 
-    static belongsTo = [utente: Utente, mobilizador: CommunityMobilizer]
+    static hasOne = [utente: Utente, mobilizador: CommunityMobilizer]
 
     static constraints = {
         username(nullable: false, blank: false)
         password(nullable: false, blank: false)
+        utente(nullable: true)
+        mobilizador(nullable: true)
     }
 }
