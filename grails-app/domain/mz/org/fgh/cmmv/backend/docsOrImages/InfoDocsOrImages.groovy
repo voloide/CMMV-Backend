@@ -1,9 +1,10 @@
 package mz.org.fgh.cmmv.backend.docsOrImages
 
-
+import grails.rest.Resource
 import mz.org.fgh.cmmv.backend.mobilizer.CommunityMobilizer
 import mz.org.fgh.cmmv.backend.utente.Utente
 
+@Resource(uri='/api/infoDocsOrImages')
 class InfoDocsOrImages {
 
     String title
