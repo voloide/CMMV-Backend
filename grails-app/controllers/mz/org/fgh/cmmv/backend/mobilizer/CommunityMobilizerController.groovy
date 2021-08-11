@@ -1,5 +1,6 @@
 package mz.org.fgh.cmmv.backend.mobilizer
 
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -20,11 +21,16 @@ class CommunityMobilizerController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond communityMobilizerService.list(params), model:[communityMobilizerCount: communityMobilizerService.count()]
+
+        JSON.use('deep'){
+            render communityMobilizerService.list(params) as JSON
+        }
     }
 
     def show(Long id) {
-        respond communityMobilizerService.get(id)
+        JSON.use('deep'){
+            render communityMobilizerService.get(id) as JSON
+        }
     }
 
     @Transactional

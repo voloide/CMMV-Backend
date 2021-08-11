@@ -1,5 +1,6 @@
 package mz.org.fgh.cmmv.backend.appointment
 
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -20,11 +21,16 @@ class AppointmentController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond appointmentService.list(params), model:[appointmentCount: appointmentService.count()]
+
+        JSON.use('deep'){
+            render appointmentService.list(params) as JSON
+        }
     }
 
     def show(Long id) {
-        respond appointmentService.get(id)
+        JSON.use('deep'){
+            render appointmentService.get(id) as JSON
+        }
     }
 
     @Transactional

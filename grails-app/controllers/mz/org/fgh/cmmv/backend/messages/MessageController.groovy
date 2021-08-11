@@ -1,5 +1,6 @@
 package mz.org.fgh.cmmv.backend.messages
 
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -20,11 +21,16 @@ class MessageController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond messageService.list(params), model:[messageCount: messageService.count()]
+
+        JSON.use('deep'){
+            render messageService.list(params) as JSON
+        }
     }
 
     def show(Long id) {
-        respond messageService.get(id)
+        JSON.use('deep'){
+            render messageService.get(id) as JSON
+        }
     }
 
     @Transactional

@@ -1,5 +1,6 @@
 package mz.org.fgh.cmmv.backend.utente
 
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -20,11 +21,16 @@ class UtenteController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond utenteService.list(params), model:[utenteCount: utenteService.count()]
+
+        JSON.use('deep'){
+            render utenteService.list(params) as JSON
+        }
     }
 
     def show(Long id) {
-        respond utenteService.get(id)
+        JSON.use('deep'){
+            render utenteService.get(id) as JSON
+        }
     }
 
     @Transactional
