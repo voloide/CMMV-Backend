@@ -13,8 +13,7 @@ class Address {
     String latitude
     String longitude
     static belongsTo = [district: District]
-    Utente user
-
+    static hasOne = [user: Utente]
     static constraints = {
 
         neighboorhood(nullable: false, blank: false)
@@ -22,5 +21,6 @@ class Address {
         residence(nullable: false, blank: false)
         latitude(nullable: false, blank: false)
         longitude(nullable: false,blank: false)
+        user nullable: true
     }
 }
