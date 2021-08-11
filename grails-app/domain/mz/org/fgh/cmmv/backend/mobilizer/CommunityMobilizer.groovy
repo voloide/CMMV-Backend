@@ -4,9 +4,11 @@ import grails.rest.Resource
 import mz.org.fgh.cmmv.backend.clinic.Clinic
 import mz.org.fgh.cmmv.backend.docsOrImages.InfoDocsOrImages
 import mz.org.fgh.cmmv.backend.messages.Message
+import mz.org.fgh.cmmv.backend.utente.Utente
+import org.grails.datastore.gorm.GormEntity
 
 @Resource(uri='/api/communityMobilizer')
-class CommunityMobilizer {
+class CommunityMobilizer implements GormEntity<CommunityMobilizer> {
 
     String firstNames
     String lastNames
@@ -14,8 +16,9 @@ class CommunityMobilizer {
     String cellNumber2
     String uuid
 
-    static hasMany = [docsOrImages: InfoDocsOrImages]
-    static belongsTo = [docsOrImages: InfoDocsOrImages , clinic : Clinic]
+    static hasMany = [docsOrImages: InfoDocsOrImages, utentes:Utente]
+    static belongsTo = [clinic : Clinic]
+//    static belongsTo = [docsOrImages: InfoDocsOrImages , clinic : Clinic]
 
     static constraints = {
         firstNames(nullable: false, blank: false)

@@ -1,5 +1,6 @@
 package mz.org.fgh.cmmv.backend.distribuicaoAdministrativa
 
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -20,11 +21,16 @@ class DistrictController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond districtService.list(params), model:[districtCount: districtService.count()]
+
+        JSON.use('deep'){
+            render districtService.list(params) as JSON
+        }
     }
 
     def show(Long id) {
-        respond districtService.get(id)
+        JSON.use('deep'){
+            render districtService.get(id) as JSON
+        }
     }
 
     @Transactional

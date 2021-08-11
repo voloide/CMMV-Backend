@@ -1,5 +1,6 @@
 package mz.org.fgh.cmmv.backend.userLogin
 
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -20,11 +21,16 @@ class UserLoginController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond userLoginService.list(params), model:[userLoginCount: userLoginService.count()]
+
+        JSON.use('deep'){
+            render userLoginService.list(params) as JSON
+        }
     }
 
     def show(Long id) {
-        respond userLoginService.get(id)
+        JSON.use('deep'){
+            render userLoginService.get(id) as JSON
+        }
     }
 
     @Transactional

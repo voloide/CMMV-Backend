@@ -1,5 +1,6 @@
 package mz.org.fgh.cmmv.backend.distribuicaoAdministrativa
 
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -18,13 +19,19 @@ class ProvinceController {
     static responseFormats = ['json', 'xml']
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond provinceService.list(params), model:[provinceCount: provinceService.count()]
+
+        JSON.use('deep'){
+            render provinceService.list(params) as JSON
+        }
     }
 
     def show(Long id) {
-        respond provinceService.get(id)
+        JSON.use('deep'){
+            render provinceService.get(id) as JSON
+        }
     }
 
     @Transactional

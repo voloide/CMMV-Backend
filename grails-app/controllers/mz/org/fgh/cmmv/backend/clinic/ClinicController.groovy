@@ -1,5 +1,6 @@
 package mz.org.fgh.cmmv.backend.clinic
 
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -20,12 +21,18 @@ class ClinicController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond clinicService.list(params), model:[clinicCount: clinicService.count()]
+
+        JSON.use('deep'){
+            render clinicService.list(params) as JSON
+        }
     }
 
     def show(Long id) {
-        respond clinicService.get(id)
+        JSON.use('deep'){
+            render clinicService.get(id) as JSON
+        }
     }
+
 
     @Transactional
     def save(Clinic clinic) {

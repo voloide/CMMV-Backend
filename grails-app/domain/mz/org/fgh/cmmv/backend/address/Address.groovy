@@ -1,8 +1,10 @@
 package mz.org.fgh.cmmv.backend.address
 
+import grails.rest.Resource
 import mz.org.fgh.cmmv.backend.distribuicaoAdministrativa.District
 import mz.org.fgh.cmmv.backend.utente.Utente
 
+@Resource(uri='/api/address')
 class Address {
 
     String neighboorhood

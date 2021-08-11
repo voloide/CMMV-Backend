@@ -4,6 +4,7 @@ import grails.rest.Resource
 import mz.org.fgh.cmmv.backend.appointment.Appointment
 
 import mz.org.fgh.cmmv.backend.mobilizer.CommunityMobilizer
+import org.grails.datastore.gorm.GormEntity
 
 @Resource(uri='/api/clinic')
 class Clinic {

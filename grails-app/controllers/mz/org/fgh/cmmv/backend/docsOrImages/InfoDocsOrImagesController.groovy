@@ -1,5 +1,6 @@
 package mz.org.fgh.cmmv.backend.docsOrImages
 
+import grails.converters.JSON
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
@@ -20,11 +21,16 @@ class InfoDocsOrImagesController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond infoDocsOrImagesService.list(params), model:[infoDocsOrImagesCount: infoDocsOrImagesService.count()]
+
+        JSON.use('deep'){
+            render infoDocsOrImagesService.list(params) as JSON
+        }
     }
 
     def show(Long id) {
-        respond infoDocsOrImagesService.get(id)
+        JSON.use('deep'){
+            render infoDocsOrImagesService.get(id) as JSON
+        }
     }
 
     @Transactional

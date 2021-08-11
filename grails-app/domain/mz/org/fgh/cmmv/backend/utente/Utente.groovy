@@ -21,7 +21,8 @@ class Utente {
     boolean haspartner
 
     static hasOne = [address:Address]
-    static belongsTo = [infoDocsImages: InfoDocsOrImages,mobilizer:CommunityMobilizer]
+//    static belongsTo = [infoDocsImages: InfoDocsOrImages,mobilizer:CommunityMobilizer]
+    static belongsTo = [mobilizer:CommunityMobilizer]
     static hasMany = [infoDocsImages: InfoDocsOrImages]
 
     static constraints = {
