@@ -1,7 +1,10 @@
 package mz.org.fgh.cmmv.backend.distribuicaoAdministrativa
 
 import grails.converters.JSON
+import grails.rest.RestfulController
 import grails.validation.ValidationException
+import sun.misc.Resource
+
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.NO_CONTENT
@@ -11,14 +14,16 @@ import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY
 import grails.gorm.transactions.ReadOnly
 import grails.gorm.transactions.Transactional
 
-@ReadOnly
-class ProvinceController {
+class ProvinceController extends RestfulController{
 
     ProvinceService provinceService
 
     static responseFormats = ['json', 'xml']
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    ProvinceController() {
+        super(Province)
+    }
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)

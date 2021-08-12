@@ -1,14 +1,12 @@
 package mz.org.fgh.cmmv.backend.utente
 
-import grails.rest.Resource
+
 import mz.org.fgh.cmmv.backend.address.Address
 import mz.org.fgh.cmmv.backend.clinic.Clinic
 import mz.org.fgh.cmmv.backend.docsOrImages.InfoDocsOrImages
-import mz.org.fgh.cmmv.backend.messages.Message
 import mz.org.fgh.cmmv.backend.mobilizer.CommunityMobilizer
 import mz.org.fgh.cmmv.backend.userLogin.UserLogin
 
-@Resource(uri='/api/utente')
 class Utente {
 
     String firstNames
