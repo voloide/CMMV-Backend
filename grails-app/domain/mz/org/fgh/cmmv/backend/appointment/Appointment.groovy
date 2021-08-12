@@ -25,6 +25,4 @@ class Appointment {
         })
         status nullable: false , inList: ['PENDENTE','CONFIRMADO','REMARCADO']
     }
-
-
 }
