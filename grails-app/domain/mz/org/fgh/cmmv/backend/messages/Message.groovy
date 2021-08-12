@@ -1,6 +1,5 @@
 package mz.org.fgh.cmmv.backend.messages
 
-
 import mz.org.fgh.cmmv.backend.utente.Utente
 
 class Message {

@@ -1,10 +1,8 @@
 package mz.org.fgh.cmmv.backend.appointment
 
-import grails.rest.Resource
 import mz.org.fgh.cmmv.backend.clinic.Clinic
 import mz.org.fgh.cmmv.backend.utente.Utente
 
-@Resource(uri='/api/appointment')
 class Appointment {
 
     Date appointmentDate

@@ -1,8 +1,5 @@
 package mz.org.fgh.cmmv.backend.distribuicaoAdministrativa
 
-import grails.rest.Resource
-
-@Resource(uri='/api/province')
 class Province {
 
     String code
