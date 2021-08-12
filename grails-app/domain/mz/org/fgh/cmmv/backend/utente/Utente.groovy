@@ -6,6 +6,7 @@ import mz.org.fgh.cmmv.backend.clinic.Clinic
 import mz.org.fgh.cmmv.backend.docsOrImages.InfoDocsOrImages
 import mz.org.fgh.cmmv.backend.mobilizer.CommunityMobilizer
 import mz.org.fgh.cmmv.backend.userLogin.UserLogin
+import mz.org.fgh.cmmv.backend.userLogin.UtenteLogin
 
 class Utente {
 
@@ -20,7 +21,9 @@ class Utente {
     String systemNumber
     boolean haspartner
 
-    static belongsTo = [mobilizer:CommunityMobilizer, address:Address, clinic: Clinic, user: UserLogin]
+    static belongsTo = [mobilizer:CommunityMobilizer, clinic: Clinic]
+
+    static hasOne = [user: UtenteLogin, address:Address]
 
     static hasMany = [infoDocsImages: InfoDocsOrImages]
 
