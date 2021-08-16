@@ -27,7 +27,7 @@ class ProvinceController extends RestfulController{
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-
+//        respond Province.list(params)
         JSON.use('deep'){
             render provinceService.list(params) as JSON
         }
