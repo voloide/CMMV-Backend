@@ -41,7 +41,6 @@ class UtenteController extends RestfulController{
     }
 
     def search(String systemNumber){
-        System.println("Passa por aqui "+systemNumber)
         JSON.use('deep'){
             render Utente.findBySystemNumber(systemNumber) as JSON
         }
