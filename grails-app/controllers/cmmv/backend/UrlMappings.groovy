@@ -10,6 +10,9 @@ class UrlMappings {
         put "/api/$controller/$id(.$format)?"(action:"update")
         patch "/api/$controller/$id(.$format)?"(action:"patch")
 
+        // add mapping for Utente search by param systemNumber
+        get "/api/utente/$systemNumber(.$format)?"(controller:'utente', action:'search')
+
         "/"(controller: 'application', action:'index')
         "500"(view: '/error')
         "404"(view: '/notFound')

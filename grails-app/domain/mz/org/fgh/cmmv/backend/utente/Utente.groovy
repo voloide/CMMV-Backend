@@ -18,11 +18,13 @@ class Utente {
     String documentType
     String documentNumber
     String systemNumber
+    CommunityMobilizer mobilizer
+    UserLogin user
     boolean haspartner
 
-    static belongsTo = [mobilizer:CommunityMobilizer, address:Address, clinic: Clinic, user: UserLogin]
+    static belongsTo = [clinic: Clinic]
 
-    static hasMany = [infoDocsImages: InfoDocsOrImages]
+    static hasMany = [infoDocsImages: InfoDocsOrImages, address:Address]
 
     static constraints = {
         lastNames(nullable: false, blank: false)
