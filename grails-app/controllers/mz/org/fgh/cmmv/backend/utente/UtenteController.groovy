@@ -3,6 +3,9 @@ package mz.org.fgh.cmmv.backend.utente
 import grails.converters.JSON
 import grails.rest.RestfulController
 import grails.validation.ValidationException
+import org.apache.groovy.util.Maps
+import org.h2.value.Value
+
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.NO_CONTENT
@@ -34,6 +37,12 @@ class UtenteController extends RestfulController{
     def show(Long id) {
         JSON.use('deep'){
             render utenteService.get(id) as JSON
+        }
+    }
+
+    def search(String systemNumber){
+        JSON.use('deep'){
+            render Utente.findBySystemNumber(systemNumber) as JSON
         }
     }
 
