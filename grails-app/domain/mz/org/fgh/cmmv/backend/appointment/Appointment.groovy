@@ -6,17 +6,17 @@ import mz.org.fgh.cmmv.backend.utente.Utente
 class Appointment {
 
     Date appointmentDate
-    long time
+    String time
     boolean hasHappened
     int orderNumber
     String status
     Date visitDate
 
-    static belongsTo = [clinic: Clinic,user: Utente]
+    static belongsTo = [clinic: Clinic, utente: Utente]
 
     static constraints = {
         appointmentDate(nullable: false, blank: true, validator: { appointmentDate, urc ->
-            return appointmentDate != null ? appointmentDate <= new Date() : null
+            return appointmentDate != null ? appointmentDate >= new Date() : null
         })
         time nullable:false
         orderNumber nullable:false

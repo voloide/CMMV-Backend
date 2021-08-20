@@ -2,6 +2,7 @@ package mz.org.fgh.cmmv.backend.utente
 
 
 import mz.org.fgh.cmmv.backend.address.Address
+import mz.org.fgh.cmmv.backend.appointment.Appointment
 import mz.org.fgh.cmmv.backend.clinic.Clinic
 import mz.org.fgh.cmmv.backend.docsOrImages.InfoDocsOrImages
 import mz.org.fgh.cmmv.backend.mobilizer.CommunityMobilizer
@@ -21,11 +22,11 @@ class Utente {
     String systemNumber
     boolean haspartner
 
-    static belongsTo = [mobilizer:CommunityMobilizer, clinic: Clinic]
+    static belongsTo = [mobilizer:CommunityMobilizer, clinic: Clinic, address:Address]
 
-    static hasOne = [user: UtenteLogin, address:Address]
+    static hasOne = [user: UtenteLogin]
 
-    static hasMany = [infoDocsImages: InfoDocsOrImages]
+    static hasMany = [appointments: Appointment, infoDocsImages: InfoDocsOrImages]
 
     static constraints = {
         lastNames(nullable: false, blank: false)
@@ -34,9 +35,9 @@ class Utente {
         })
         cellNumber(nullable: false, matches: /\d+/, maxSize: 12, minSize: 9)
         whatsappNumber(nullable: false, matches: /\d+/, maxSize: 12, minSize: 9)
-        documentType(nullable: false, blank: false)
-        documentNumber(nullable: false, blank: false)
-        systemNumber(nullable: false, blank: false)
+        documentType(nullable: true)
+        documentNumber(nullable: true)
+        systemNumber(nullable: true)
         preferedLanguage(nullable: true)
         infoDocsImages(nullable: true)
         mobilizer(nullable: true)
