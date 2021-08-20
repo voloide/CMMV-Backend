@@ -3,6 +3,8 @@ package mz.org.fgh.cmmv.backend.appointment
 import grails.converters.JSON
 import grails.rest.RestfulController
 import grails.validation.ValidationException
+import mz.org.fgh.cmmv.backend.utente.Utente
+
 import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.NO_CONTENT
@@ -31,6 +33,15 @@ class AppointmentController extends RestfulController{
         }
     }
 
+    def getAllOfUtente(Long utenteId) {
+        params.max = Math.min(max ?: 10, 100)
+        Utente utente
+        utente.setId(utenteId)
+        JSON.use('deep'){
+            render Appointment.findAllByUtente(utente) as JSON
+        }
+    }
+
     def show(Long id) {
         JSON.use('deep'){
             render appointmentService.get(id) as JSON
@@ -50,6 +61,15 @@ class AppointmentController extends RestfulController{
         }
 
         try {
+            if (appointment.getId() <= 0){
+
+                Collection<Appointment> dbappointments = Appointment.findAllByAppointmentDate(appointment.getAppointmentDate())
+                if (dbappointments != null && dbappointments.size() > 0) {
+                    appointment.setOrderNumber(dbappointments.size() + 1)
+                } else {
+                    appointment.setOrderNumber(1)
+                }
+            }
             appointmentService.save(appointment)
         } catch (ValidationException e) {
             respond appointment.errors
