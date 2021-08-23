@@ -20,6 +20,7 @@ class Utente {
     String documentType
     String documentNumber
     String systemNumber
+    String status
     boolean haspartner
 
     static belongsTo = [mobilizer:CommunityMobilizer, clinic: Clinic, address:Address]
