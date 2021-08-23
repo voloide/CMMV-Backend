@@ -12,7 +12,7 @@ class UrlMappings {
 
         // add mapping for Utente search by param systemNumber
          get "/api/utente/$systemNumber(.$format)?"(controller:'utente', action:'search')
-
+        get "/api/utente/clinic/$id(.$format)?"(controller:'utente', action:'searchByClinicId')
         "/"(controller: 'application', action:'index')
         "500"(view: '/error')
         "404"(view: '/notFound')
