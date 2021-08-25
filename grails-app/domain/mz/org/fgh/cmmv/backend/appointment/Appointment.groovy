@@ -11,8 +11,9 @@ class Appointment {
     int orderNumber
     String status
     Date visitDate
+    Clinic clinic
 
-    static belongsTo = [clinic: Clinic, utente: Utente]
+    static belongsTo = [utente: Utente]
 
     static constraints = {
         appointmentDate(nullable: false, blank: true, validator: { appointmentDate, urc ->

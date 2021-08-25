@@ -3,6 +3,7 @@ package mz.org.fgh.cmmv.backend.utente
 import grails.converters.JSON
 import grails.rest.RestfulController
 import grails.validation.ValidationException
+import mz.org.fgh.cmmv.backend.userLogin.UtenteLogin
 import org.apache.groovy.util.Maps
 import org.h2.value.Value
 
@@ -40,12 +41,6 @@ class UtenteController extends RestfulController{
         }
     }
 
-    def search(String systemNumber){
-        JSON.use('deep'){
-            render Utente.findBySystemNumber(systemNumber) as JSON
-        }
-    }
-
     @Transactional
     def save(Utente utente) {
         if (utente == null) {
@@ -59,6 +54,11 @@ class UtenteController extends RestfulController{
         }
 
         try {
+            utente.setUser(new UtenteLogin())
+            utente.getUser().setUsername(utente.getFirstNames())
+            utente.getUser().setPassword(utente.getLastNames())
+            utente.getUser().setUtente(utente)
+            utente.setSystemNumber(utente.getFirstNames().substring(0,1)+utente.getLastNames().substring(0,1)+"-"+utente.getCellNumber())
             utenteService.save(utente)
         } catch (ValidationException e) {
             respond utente.errors

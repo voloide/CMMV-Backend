@@ -1,9 +1,6 @@
 package mz.org.fgh.cmmv.backend.clinic
 
-import grails.gorm.services.Service
-
-@Service(Clinic)
-interface ClinicService {
+interface IClinicService {
 
     Clinic get(Serializable id)
 
@@ -14,5 +11,7 @@ interface ClinicService {
     Clinic delete(Serializable id)
 
     Clinic save(Clinic clinic)
+
+    List<Clinic> searchByDistance(double lat, double log, double distance)
 
 }

@@ -1,6 +1,5 @@
 package mz.org.fgh.cmmv.backend.distribuicaoAdministrativa
 
-import com.bloomhealthco.jasypt.GormEncryptedStringType
 
 class Province {
 
@@ -15,8 +14,8 @@ class Province {
     }
 
     static mapping = {
-        code type: GormEncryptedStringType
-        description type: GormEncryptedStringType
+        //code type: GormEncryptedStringType
+        //description type: GormEncryptedStringType
 //        birthDate type: GormEncryptedDateAsStringType
 //        anniversary type: GormEncryptedCalendarAsStringType
 //        hasInsurance type: GormEncryptedBooleanType

@@ -1,6 +1,5 @@
 package mz.org.fgh.cmmv.backend.distribuicaoAdministrativa
 
-import com.bloomhealthco.jasypt.GormEncryptedStringType
 import mz.org.fgh.cmmv.backend.address.Address
 
 class District {
@@ -17,8 +16,8 @@ class District {
     }
 
     static mapping = {
-        code type: GormEncryptedStringType
-        description type: GormEncryptedStringType
+        //code type: GormEncryptedStringType
+        //description type: GormEncryptedStringType
 //        birthDate type: GormEncryptedDateAsStringType
 //        anniversary type: GormEncryptedCalendarAsStringType
 //        hasInsurance type: GormEncryptedBooleanType
