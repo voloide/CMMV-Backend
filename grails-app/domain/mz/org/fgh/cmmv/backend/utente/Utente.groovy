@@ -20,6 +20,7 @@ class Utente {
     String documentType
     String documentNumber
     String systemNumber
+    String status
     boolean haspartner
     CommunityMobilizer mobilizer
 
